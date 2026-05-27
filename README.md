@@ -24,14 +24,13 @@ npm run build
 Create a `.env` file from `.env.example` when needed.
 
 ```bash
-VITE_API_BASE_URL=
 VITE_BACKEND_PROXY_TARGET=http://127.0.0.1:8000
 ```
 
 ### Recommended local setup
 
 1. Start the backend from `Final Project/backend`
-2. Keep `VITE_API_BASE_URL` empty so the Vite dev server can proxy `/v1/*`
+2. Set `VITE_BACKEND_PROXY_TARGET` to your backend origin
 3. Run this app from `Final Project/Landing-page`
 
-If you deploy the frontend separately from the backend, set `VITE_API_BASE_URL` to the backend origin and ensure the backend allows that origin.
+If you deploy the frontend separately from the backend, set `VITE_BACKEND_PROXY_TARGET` to the backend origin and ensure the backend allows that origin.
