@@ -22,7 +22,7 @@ const OutputPanel = ({
   onSelectCandidate,
 }: OutputPanelProps) => {
   return (
-    <section className="card-surface h-full">
+    <section className="card-surface flex h-full min-h-0 flex-col">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-plum-700">Output panel</p>
@@ -68,7 +68,7 @@ const OutputPanel = ({
                   ) : null}
                 </div>
               </div>
-              <p className="mt-6 min-h-[180px] whitespace-pre-wrap rounded-[1.5rem] bg-white px-5 py-5 text-lg leading-9 text-ink shadow-sm">
+              <p className="mt-6 max-h-[18rem] min-h-[180px] overflow-y-auto whitespace-pre-wrap rounded-[1.5rem] bg-white px-5 py-5 text-lg leading-9 text-ink shadow-sm">
                 {selectedText || result.best_text}
               </p>
             </>
@@ -84,7 +84,7 @@ const OutputPanel = ({
         </div>
       ) : null}
 
-      <div className="mt-6">
+      <div className="mt-6 min-h-0 flex-1">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-semibold text-ink">Ranked suggestions</h3>
           <p className="text-sm text-slate-500">Click a candidate to preview it above.</p>
