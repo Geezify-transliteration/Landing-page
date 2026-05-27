@@ -2,7 +2,7 @@ import { GeezifySyncCoordinator } from "@/lib/sync/coordinator";
 import { HttpSyncTransport } from "@/lib/sync/http-transport";
 
 import { landingProfileCache } from "@/lib/cache/landing-profile-cache";
-import { getUserPreferredStore, normalizeLatin } from "@/lib/cache/user-preferred-store";
+import { getUserPreferredStore } from "@/lib/cache/user-preferred-store";
 import { DEVICE_ID_KEY } from "@/lib/cache/storage-keys";
 import { getAccessToken } from "@/lib/auth";
 import { enqueuePendingPreferences } from "@/lib/sync/preference-sync";
