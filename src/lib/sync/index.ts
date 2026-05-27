@@ -5,6 +5,7 @@ import { landingProfileCache } from "@/lib/cache/landing-profile-cache";
 import { getUserPreferredStore } from "@/lib/cache/user-preferred-store";
 import { DEVICE_ID_KEY } from "@/lib/cache/storage-keys";
 import { getAccessToken } from "@/lib/auth";
+import { toBackendUrl } from "@/lib/env";
 import { enqueuePendingPreferences } from "@/lib/sync/preference-sync";
 
 const CLIENT_HEADER = "landing/1.0.0";
@@ -24,7 +25,7 @@ const landingDevice = {
   },
 };
 
-const apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const apiBase = toBackendUrl("");
 
 const coordinator = new GeezifySyncCoordinator(
   "landing",

@@ -1,20 +1,11 @@
 import { getAccessToken, refreshAccessToken } from "@/lib/auth";
+import { toBackendUrl } from "@/lib/env";
 import type {
   ApiError,
   ModelsListResponse,
   TransliterateRequest,
   TransliterateResponse,
 } from "@/lib/types";
-
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
-
-const toApiUrl = (path: string) => {
-  if (!API_BASE_URL) {
-    return path;
-  }
-
-  return `${API_BASE_URL}${path}`;
-};
 
 const parseApiError = async (response: Response): Promise<ApiError> => {
   let code = "REQUEST_FAILED";
@@ -52,7 +43,7 @@ function buildHeaders(extra?: HeadersInit): HeadersInit {
 }
 
 async function fetchJson<T>(path: string, init?: RequestInit, retryOnUnauthorized = true): Promise<T> {
-  const response = await fetch(toApiUrl(path), {
+  const response = await fetch(toBackendUrl(path), {
     headers: buildHeaders(init?.headers),
     ...init,
   });

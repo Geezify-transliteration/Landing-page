@@ -1,9 +1,7 @@
+import { toBackendUrl } from "@/lib/env";
+
 const ACCESS_TOKEN_KEY = "geezify_access_token";
 const REFRESH_TOKEN_KEY = "geezify_refresh_token";
-
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
-
-const toApiUrl = (path: string) => (API_BASE_URL ? `${API_BASE_URL}${path}` : path);
 
 export interface AuthTokens {
   access_token: string;
@@ -57,7 +55,7 @@ async function parseAuthError(response: Response): Promise<string> {
 }
 
 export async function login(email: string, password: string): Promise<AuthTokens> {
-  const response = await fetch(toApiUrl("/v1/auth/login"), {
+  const response = await fetch(toBackendUrl("/v1/auth/login"), {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-Geezify-Client": "landing/1.0.0" },
     body: JSON.stringify({ email, password }),
@@ -73,7 +71,7 @@ export async function register(
   password: string,
   fullName?: string,
 ): Promise<AuthUser> {
-  const response = await fetch(toApiUrl("/v1/auth/register"), {
+  const response = await fetch(toBackendUrl("/v1/auth/register"), {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-Geezify-Client": "landing/1.0.0" },
     body: JSON.stringify({ email, password, full_name: fullName || null }),
@@ -86,7 +84,7 @@ export async function refreshAccessToken(): Promise<AuthTokens | null> {
   const refresh = getRefreshToken();
   if (!refresh) return null;
 
-  const response = await fetch(toApiUrl("/v1/auth/refresh"), {
+  const response = await fetch(toBackendUrl("/v1/auth/refresh"), {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-Geezify-Client": "landing/1.0.0" },
     body: JSON.stringify({ refresh_token: refresh }),
@@ -104,14 +102,14 @@ export async function fetchMe(): Promise<AuthUser | null> {
   const token = getAccessToken();
   if (!token) return null;
 
-  let response = await fetch(toApiUrl("/v1/auth/me"), {
+  let response = await fetch(toBackendUrl("/v1/auth/me"), {
     headers: { Authorization: `Bearer ${token}`, "X-Geezify-Client": "landing/1.0.0" },
   });
 
   if (response.status === 401) {
     const refreshed = await refreshAccessToken();
     if (!refreshed) return null;
-    response = await fetch(toApiUrl("/v1/auth/me"), {
+    response = await fetch(toBackendUrl("/v1/auth/me"), {
       headers: {
         Authorization: `Bearer ${refreshed.access_token}`,
         "X-Geezify-Client": "landing/1.0.0",
