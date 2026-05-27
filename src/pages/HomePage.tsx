@@ -1,7 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import {
-  AnnouncementBar,
   FaqSection,
   FeatureGridSection,
   FinalCtaSection,
@@ -14,7 +13,6 @@ import {
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-plum-50/60">
-      <AnnouncementBar />
       <Navbar />
       <main>
         <HeroSection />

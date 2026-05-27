@@ -26,7 +26,7 @@ const TextEditorPanel = ({
   const remainingChars = MAX_INPUT_CHARS - value.length;
 
   return (
-    <section className="card-surface h-full">
+    <section className="card-surface flex h-full min-h-0 flex-col">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-plum-700">Input editor</p>
@@ -56,7 +56,7 @@ const TextEditorPanel = ({
       </div>
 
       <textarea
-        className="input-base mt-6 min-h-[320px] resize-none"
+        className="input-base mt-6 min-h-[320px] flex-1 resize-none overflow-y-auto"
         placeholder="Example: selam new endet neh? zare conference lay presentation alen."
         value={value}
         onChange={(event) => onChange(event.target.value)}

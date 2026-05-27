@@ -16,7 +16,7 @@ const CandidateList = ({ candidates, selectedText, onSelect }: CandidateListProp
   }
 
   return (
-    <div className="grid gap-3">
+    <div className="grid max-h-[22rem] gap-3 overflow-y-auto pr-1">
       {candidates.map((candidate) => {
         const isSelected = candidate.text === selectedText;
 
@@ -36,9 +36,6 @@ const CandidateList = ({ candidates, selectedText, onSelect }: CandidateListProp
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Candidate {candidate.rank}</p>
                 <p className="mt-2 text-base font-medium text-ink">{candidate.text}</p>
               </div>
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-plum-700 shadow-sm">
-                Score {candidate.score.toFixed(2)}
-              </span>
             </div>
           </button>
         );
