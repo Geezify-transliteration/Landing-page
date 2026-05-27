@@ -1,12 +1,8 @@
-import type { AuthProvider, DeviceIdentity, LocalProfileCache, SyncCoordinator, SyncTransport } from "@/lib/sync/interfaces";
+import type { AuthProvider, DeviceIdentity, LocalProfileCache, PushResult, SyncCoordinator, SyncTransport } from "@/lib/sync/interfaces";
 import type { ClientKind, LocalChange, SyncChange } from "@/lib/sync/types";
 
 import { changeFingerprint } from "@/lib/sync/change-fingerprint";
 import { normalizeLatin } from "@/lib/cache/user-preferred-store";
-
-export type PushResult = {
-  syncedPreferences: string[];
-};
 
 export class GeezifySyncCoordinator implements SyncCoordinator {
   private pushTimer: ReturnType<typeof setTimeout> | undefined;

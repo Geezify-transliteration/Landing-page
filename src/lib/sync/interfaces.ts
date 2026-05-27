@@ -27,9 +27,13 @@ export interface SyncTransport {
   erase(token: string): Promise<void>;
 }
 
+export type PushResult = {
+  syncedPreferences: string[];
+};
+
 export interface SyncCoordinator {
   bootstrap(): Promise<void>;
-  pushPending(): Promise<void>;
+  pushPending(): Promise<PushResult>;
   pull(remoteCursor?: number): Promise<void>;
   onLocalChange(change: LocalChange): void;
   eraseAll(): Promise<void>;
